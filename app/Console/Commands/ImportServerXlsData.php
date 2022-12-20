@@ -33,10 +33,7 @@ class ImportServerXlsData extends Command
      */
     public function handle()
     {
-        $file = Storage::disk('local')->get('xls/'.self::FILE_NAME);
-        \Maatwebsite\Excel\Facades\Excel::import(app(ServersImport::class), 'xls/'.self::FILE_NAME);
-
-//        $this->info("Token succesfully generated: " . $token);
-
+        \Maatwebsite\Excel\Facades\Excel::import(app(ServersImport::class), 'xls/' . self::FILE_NAME);
+        $this->info('Servers imported succesfully');
     }
 }
