@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
 class Server extends Model
-{
-    use HasApiTokens;
-    
+{    
     protected $table = 'servers';
     
     protected $fillable = [
@@ -16,6 +14,7 @@ class Server extends Model
         'ram',
         'ram_specification',
         'storage',
+        'storage_alias',
         'storage_description',
         'disk_type',
         'location',

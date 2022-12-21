@@ -4,18 +4,20 @@ namespace App\Repositories;
 
 use App\Models\Server;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class ServerRepository
 {
     
     private const ALLOWED_FILTERS = [
         'ram' => 'array',
-        'storage' => 'string',
+        'storage_alias' => 'string',
         'disk_type' => 'string',
         'location' => 'string'
     ];
-    
+
+    /**
+     * @param Server $model
+     */
     public function __construct(protected Server $model)
     {
     }
@@ -33,10 +35,14 @@ class ServerRepository
         return $server;
     }
 
+    /**
+     * @param array $filters
+     *
+     * @return Collection
+     */
     public function getAll(array $filters = []): Collection
     {
         $filters = array_filter($filters);
-        Log::info(implode(',', $filters));
         $query = $this->model->newQuery();
         foreach ($filters as $key => $filter) {
             if (in_array($key, array_keys(self::ALLOWED_FILTERS)) && $filter != 'null') {

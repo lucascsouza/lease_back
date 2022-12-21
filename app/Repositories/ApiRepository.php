@@ -6,7 +6,9 @@ use App\Models\Api;
 
 class ApiRepository
 {
-
+    /**
+     * @param Api $model
+     */
     public function __construct(protected Api $model)
     {
     }

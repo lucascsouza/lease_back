@@ -4,8 +4,7 @@ namespace App\Console\Commands;
 
 use App\Imports\ServersImport;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportServerXlsData extends Command
 {
@@ -33,7 +32,12 @@ class ImportServerXlsData extends Command
      */
     public function handle()
     {
-        \Maatwebsite\Excel\Facades\Excel::import(app(ServersImport::class), 'xls/' . self::FILE_NAME);
-        $this->info('Servers imported succesfully');
+        try {
+            Excel::import(app(ServersImport::class), 'xls/' . self::FILE_NAME);
+            $this->info('Servers imported succesfully');
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
+        
     }
 }

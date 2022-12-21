@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name')->comment("Server's name");
             $table->string('ram')->comment("RAM GB Capacity");
             $table->string('ram_specification')->comment("RAM Specification (E.g: DDR4)");
-            $table->string('storage')->comment("Total storage capacity");
+            $table->string('storage')->comment("Total storage capacity in GB");
+            $table->string('storage_alias')->comment("Alias for storage");
             $table->string('storage_description')->comment("Storage Description");
             $table->string('disk_type')->comment("Storage disk type");
             $table->string('location')->comment("Server's location");
