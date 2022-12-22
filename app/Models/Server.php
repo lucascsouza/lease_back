@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\ServerFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Sanctum\HasApiTokens;
 
 class Server extends Model
-{    
+{
+    use HasFactory;
+
     protected $table = 'servers';
     
     protected $fillable = [
@@ -21,5 +24,13 @@ class Server extends Model
         'price',
         'currency'
     ];
+
+    /**
+     * @return ServerFactory
+     */
+    protected static function newFactory(): ServerFactory
+    {
+        return ServerFactory::new();
+    }
 
 }

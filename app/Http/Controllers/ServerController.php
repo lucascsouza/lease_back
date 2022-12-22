@@ -29,14 +29,13 @@ class ServerController extends Controller
      */
     public function filterData(): JsonResponse
     {
-        
         $rawData = $this->service->getAll();
         
         return response()->json([
             'storage' => $rawData->sortBy('storage')->pluck('storage', 'storage_alias')->unique(),
-            'disk_types' => $rawData->sortBy('disk_type')->pluck('disk_type')->unique(),
-            'ram' => $rawData->sortBy('ram')->pluck('ram')->unique(),
-            'locations' => $rawData->sortBy('location')->pluck('location')->unique(),
+            'disk_types' => $rawData->sortBy('disk_type')->pluck('disk_type')->unique()->values(),
+            'ram' => $rawData->sortBy('ram')->pluck('ram')->unique()->values(),
+            'locations' => $rawData->sortBy('location')->pluck('location')->unique()->values(),
         ]);
     }
 

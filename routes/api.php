@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('/servers', [ServerController::class, 'index']);
-    Route::get('/filter-data', [ServerController::class, 'filterData']);
+Route::name('servers.')->middleware('auth:sanctum')->group(function () {
+    Route::get('/servers', [ServerController::class, 'index'])->name('index');
+    Route::get('/filter-data', [ServerController::class, 'filterData'])->name('filterData');
 });
